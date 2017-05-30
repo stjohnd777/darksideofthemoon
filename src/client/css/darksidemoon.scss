@@ -1,0 +1,42 @@
+
+$bgColor : #110111;
+$textColor : #FFFFFF;
+
+#context{
+    background: url(bg002.png) no-repeat;
+    background-size: cover;
+}
+body{
+    background: url(globe.jpg) no-repeat;
+    background-size: cover;
+    color :$textColor;
+}
+#leftnav{
+    background: url(bg001.png) no-repeat;
+    background-size: cover;
+}
+
+#center{
+    background: url(bg003.png) no-repeat;
+    background-size: cover;
+}
+
+#rightnav{
+    background: url(bg001.png) no-repeat;
+    background-size: cover;
+}
+
+footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+}
+
+p {
+    color: darkred;
+}
+
+.room {
+    text-align: left;
+    border: 1px darkred;
+}

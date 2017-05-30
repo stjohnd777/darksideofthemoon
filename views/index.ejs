@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<% include ./head.ejs%>
+
+<body>
+
+
+<% include ./header.ejs%>
+
+
+<div class="container-fluid text-center">
+
+    <div  class="row content">
+
+        <% include ./leftnav.ejs%>
+
+        <div id="center">
+
+            <!--<div class="col-sm-8 text-left">-->
+                <!--<hr>-->
+                <!--<h4>Room: 22nd-yytu-i876-0223</h4> <h4>From: rp3xs3</h4> <h4>Members: rps3xs3, overman, mister2121</h4>-->
+                <!--<p><textarea id="22nd-yytu-i876-0223_mgstxt"    rows="4" cols="80"></textarea></p>-->
+                <!--<button id="22nd-yytu-i876-0223_btn_send" class="btn btn-success ">Send</button>-->
+                <!--<hr>-->
+            <!--</div>-->
+
+        </div>
+
+
+        <!-- Right Nav -->
+        <%include ./rightnav.ejs%>
+
+
+
+
+    </div>
+</div>
+
+<% include ./footer.ejs %>
+
+<script type="text/javascript" src="./dist/bundle.js"></script>
+
+<script>
+
+
+    let channelHack = {
+        "creator" : "overmandan",
+        "name": "22nd-yytu-i876-0223",
+        "acl": ['rps3xs3', 'overman', 'mister2121'],
+        "mode": "RT",
+        "expire": "-1"
+    }
+
+
+    function CreateChannelMessagePanel(parentId,channel){
+
+        let htmlChannel = `<div id="center">
+            <div class="col-sm-8 text-left">
+                <hr>
+                    <h4>Room: ${channel.name}/h4> <h4>Creator: ${channel.creator}</h4> <h4>ACL:${JSON.stringify(channel.acl)} </h4>
+                    <p><textarea id="${channel.name}_mgstxt"    rows="4" cols="80"></textarea></p>
+                    <button id="${channel.name}_btn_send" class="btn btn-success ">Send</button>
+                    <hr>
+            </div>
+        </div>`;
+
+
+        $('#'+parentId).prepend(htmlChannel);
+
+        /*
+         * Get Text, encript it, sendit to ajax endpoint, play snd feedback
+         * for user experience
+         */
+        $('#'+name).click(function(e){
+            let idMsgInput = channel + '_mgstxt';
+            let  txt = $('#' + idMsgInput).val();
+            let cipherTxt = App.Cipher.encodeAES(txt,'kitty');
+            $('#' + idMsgInput).val(cipherTxt);
+            alert(cipherTxt);
+
+            var path = "snd/swooshby.wav"
+            var snd = new Audio(path);
+            snd.play();
+
+            let uri = '/ajax/send/';
+
+            App.Ajax.doAjaxPost(uri,{
+                    channel:channel,
+                    cipherTxt : cipherTxt
+                },
+                (result) =>{
+                    alert(results);
+                });
+        });
+    }
+
+    CreateChannelMessagePanel('center',channelHack);
+
+
+//    $('#22nd-yytu-i876-0223_btn_send').click(function(e){
+//
+//        let channel = '22nd-yytu-i876-0223';
+//        let idMsgInput = channel + '_mgstxt';
+//        let  txt = $('#' + idMsgInput).val();
+//        let cipherTxt = App.Cipher.encodeAES(txt,'kitty');
+//        $('#' + idMsgInput).val(cipherTxt);
+//        alert(cipherTxt);
+//
+//        var path = "snd/swooshby.wav"
+//        var snd = new Audio(path);
+//        snd.play();
+//
+//        let uri = '/ajax/send/';
+//
+//        App.Ajax.doAjaxPost(uri,{
+//            channel:channel,
+//            cipherTxt : cipherTxt
+//            },
+//            (result) =>{
+//
+//                alert(results);
+//
+//
+//        });
+//
+//    });
+
+    function SendMessage(channel,message)  {
+
+    }
+
+</script>

@@ -1,0 +1,49 @@
+<!-- Left Navigation -->
+<div id="leftnav" class="col-sm-2 sidenav">
+
+    <div class="well room">
+        <p>Room: <a href="#">22nd-yytu-i876-0223</a></p><input id="checkBox" type="checkbox">
+        <a id="a_mute_22nd-yytu-i876-0223">mute</a>
+        <a id="a_more_22nd-yytu-i876-0223">More</a>
+        <div id="22nd-yytu-i876-0223" hidden>
+            <p>Creator: <a href="#">overman</a></p>
+            <p>Create Date: <a href="#">04/28/17 10:03pm</a></p>
+            <p>Expire Date: <a href="#">05/28/17 10:03pm</a></p>
+            <p>Participants: <a href="#">12</a></p>
+            <p>Unread: <a href="#">3</a></p>
+        </div>
+    </div>
+
+
+    <script>
+        (function () {
+
+            var mute = false;
+            var more = true;
+
+            var room = '22nd-yytu-i876-0223';
+            var id_more = 'a_more_' + room;
+            $('#' + id_more).click( (event)=>{
+                var innerHtlm = more===false ? 'more' : 'less';
+                $('#' + id_more).html(innerHtlm);
+                $('#' + room).toggle('fade');
+                more = !more;
+            });
+
+            var id_mute = 'a_mute_' + room;
+            $('#' + id_mute).click( (event)=>{
+                let innerHtlm = mute === true ? 'un-mute' : 'mute';
+                $('#' + id_more).html( innerHtlm);
+                mute = !mute;
+            });
+
+
+
+        })();
+
+
+
+
+
+    </script>
+</div>

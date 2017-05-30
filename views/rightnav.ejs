@@ -1,0 +1,49 @@
+<div id="rightnav" class="col-sm-2 sidenav">
+
+    <div class="well">
+        <p>User : <a> rp3xs3 </a> <a> online </a>   </p>
+    </div>
+
+    <div>
+        <a>ScoketIO Section</a>
+        <hr>
+        channel0
+        <div  id="alert">
+            <li>Alerts 0</li>
+        </div>
+        <hr>
+        channel1
+        <div id="alert1">
+            <li>Alerts 1</li>
+        </div>
+        <hr>
+        channel2
+        <div  id="alert2">
+            <li>Alerts 2</li>
+        </div>
+    </div>
+
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+
+    let socket = io();
+    socket.connect();
+
+    let channel0 = 'channel0';
+    socket.on(channel0 ,function(data){
+        $('#alert').prepend('<li>' + data + '</li>');
+    });
+
+    let channel1 = 'channel1';
+    socket.on(channel1,function(data){
+        $('#alert1').prepend('<li>' + data + '</li>');
+    });
+
+    let channel2 = 'channel2';
+    socket.on(channel2,function(data){
+        $('#alert2').prepend('<li>' + data + '</li>');
+    });
+
+</script>
