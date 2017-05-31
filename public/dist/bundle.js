@@ -16593,6 +16593,8 @@ var Message = exports.Message = _Message;
 
 
 var CryptoJS = __webpack_require__(132);
+//let bcrypt = require('bcrypt');
+
 
 var Cipher = {
 
@@ -16604,12 +16606,29 @@ var Cipher = {
     },
 
     decodeAES: function decodeAES(cipherText, secret) {
-        "use strict";
 
         var bytes = CryptoJS.AES.decrypt(cipherText, secret);
         var message = bytes.toString(CryptoJS.enc.Utf8);
         return message;
     }
+    //,
+    // generateHash(myPlaintextPassword,saltRounds = 10){
+    //
+    //     bcrypt.hash(myPlaintextPassword, saltRounds, function(err, hash) {
+    //         // Store hash in your password DB.
+    //     });
+    // },
+    //
+    // comparePassword : (myPlaintextPassword,onFail,onSuccess) =>{
+    //
+    //     bcrypt.compare(myPlaintextPassword, hash, (err, res) =>{
+    //         if ( res === true){
+    //             onSuccess(res);
+    //         }else {
+    //             onFail(res);
+    //         }
+    //     });
+    // }
 };
 
 module.exports = Cipher;

@@ -1,6 +1,5 @@
 let CryptoJS = require("crypto-js");
 
-
 let Cipher = {
 
     encodeAES: (message, secret) => {
@@ -10,11 +9,12 @@ let Cipher = {
     }
     ,
     decodeAES: (cipherText, secret) => {
-        "use strict";
+
         let bytes = CryptoJS.AES.decrypt(cipherText, secret);
         let message = bytes.toString(CryptoJS.enc.Utf8);
         return message;
     }
+
 };
 
 module.exports = Cipher;
